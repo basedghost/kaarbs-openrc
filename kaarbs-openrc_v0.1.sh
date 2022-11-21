@@ -156,7 +156,7 @@ done
 
 # Installs simple desktop display manager + a custom lain theme.
 install_sddm () {
-     sudo pacman -S sddm sddm-openrc;
+     sudo pacman -S sddm sddm-openrc gst-plugins-good;
      sudo rc-update add sddm boot;
      git clone https://aur.archlinux.org/sddm-lain-wired-theme.git;
      cd sddm-lain-wired-theme;
