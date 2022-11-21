@@ -28,7 +28,7 @@ There is a [complete list of packages](PACKAGES.md) that this script gives you t
 
 ## post-script tweaks
 
-Here's a couple of things you might want to do after using kaarbs:
+Here's a couple of things you might want to do after using kaarbs (and installing my configs):
 - If you'd like to use the [custom sudo lecture](https://github.com/basedghost/dotfiles/blob/main/lecture), use ```sudo visudo``` and add these two lines: 
 ```
 "Defaults lecture=always"
