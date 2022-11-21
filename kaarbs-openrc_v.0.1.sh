@@ -2,10 +2,9 @@
 
 # KAARBS-OpenRC: Kojiros Automated Artix Ricing Bash Script
 # ##################################################
-# This script is intended to be a quick/lazy way of auto-installing all the packages I normally 
-# would but with the option to pick and choose what you want to install. This is mainly for my 
-# personal use, however others could use it. Because of my lack of technical knowledge
-# it does still require a slight amount of tinkering afterwards, but this should do for now.
+# This script is a fork of KAARBS written for Artix Linux
+# (or any distro with pacman) and the OpenRC init system.
+# https://github.com/basedghost/kaarbs
 
 # LIST OF FUNCTIONS
 # Color coded text.
