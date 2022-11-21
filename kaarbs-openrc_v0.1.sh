@@ -23,7 +23,7 @@ YELLOW='\033[0;33m'
 # Installs dependencies.
 install_dep () {
 	echo -e "${CYAN}proceeding to install necessary dependencies...${NC}" && sleep 2; 
-	sudo pacman -S rsync wget noto-fonts noto-fonts-cjk noto-fonts-emoji terminus-font pacman-contrib arandr ufw ufw-openrc qt5-base qt5-svg qt5-quickcontrols qt5-quickcontrols2 qt5-graphicaleffects qt5-multimedia zip unzip unrar p7zip logrotate;
+	sudo pacman -S git make gcc pkgconf rsync wget noto-fonts noto-fonts-cjk noto-fonts-emoji terminus-font pacman-contrib arandr ufw ufw-openrc qt5-base qt5-svg qt5-quickcontrols qt5-quickcontrols2 qt5-graphicaleffects qt5-multimedia zip unzip unrar p7zip logrotate;
 	sudo rc-update add ufw boot;
 	sudo ufw enable
 }
@@ -39,7 +39,7 @@ script_init () {
 	[pP] ) echo -e "${CYAN}installing dependencies${NC}";
                   install_dep && break;;
            [eE] ) echo -e "${RED}exiting KAARBS"; exit;;
-           [lL] ) clear; echo -e "rsync"$'\n'"noto-fonts"$'\n'"noto-fonts-cjk"$'\n'"noto-fonts-emoji"$'\n'"terminus-font"$'\n'"pacman-contrib"$'\n'"arandr"$'\n'"ufw"$'\n'"qt5-base"$'\n'"qt5-svg"$'\n'"qt5-quickcontrols"$'\n'"qt5-quickcontrols2"$'\n'"qt5-graphicaleffects"$'\n'"qt5-multimedia${NC}"; script_init;;
+           [lL] ) clear; echo -e "git"$'\n'"make"$'\n'"gcc"$'\n'"pkgconf"$'\n'"rsync"$'\n'"noto-fonts"$'\n'"noto-fonts-cjk"$'\n'"noto-fonts-emoji"$'\n'"terminus-font"$'\n'"pacman-contrib"$'\n'"arandr"$'\n'"ufw, ufw-openrc"$'\n'"qt5-base"$'\n'"qt5-svg"$'\n'"qt5-quickcontrols"$'\n'"qt5-quickcontrols2"$'\n'"qt5-graphicaleffects"$'\n'"qt5-multimedia${NC}"; script_init;;
 	   [sS] ) echo -e "${YELLOW}skipping dependencies...${NC}"; break;;
               * ) echo -e "${RED}invalid response${NC}";;
         esac
@@ -68,7 +68,7 @@ done
 }
 
 # Installs the AUR helper, yay.
-install_yay () { 
+install_yay () {
 	git clone https://aur.archlinux.org/yay.git;
  	cd yay;
 	makepkg -si
@@ -148,7 +148,7 @@ confirm_awesomewm () {
 	[yY] ) echo -e "${CYAN}installing awesomeWM + other packages to fill in the gaps.${NC}";
                install_awesomewm && break;;
         [nN] ) echo -e "${YELLOW}skipping awesomeWM...${NC}"; break;;
-        [lL] ) clear; echo -e "${CYAN}awesome\nnitrogen\npicom\nxorg-xwininfo\nxorg-xprop\nxscreensaver\ndmenu\npolkit-gnome\nkitty\nunclutter\nlxappearance\npavucontrol\npcmanfm\nscrot\nfeh\nimagemagick\nconky${NC}"; confirm_awesomewm;;
+        [lL] ) clear; echo -e "${CYAN}awesome\npicom\nxorg-xprop\nxscreensaver\ndmenu\npolkit-gnome\nkitty\nunclutter\nlxappearance\npavucontrol\npcmanfm\nscrot\nsxiv\nimagemagick\nconky${NC}"; confirm_awesomewm;;
            * ) echo -e "${RED}invalid response${NC}";;
         esac
 done
@@ -156,7 +156,7 @@ done
 
 # Installs simple desktop display manager + a custom lain theme.
 install_sddm () {
-     sudo pacman -S sddm;
+     sudo pacman -S sddm sddm-openrc;
      sudo rc-update add sddm boot;
      git clone https://aur.archlinux.org/sddm-lain-wired-theme.git;
      cd sddm-lain-wired-theme;
@@ -196,13 +196,8 @@ install_configs () {
 # Clones the /usr/ directory
     sudo cp -r usr/ /
     cd /usr/local/bin/
-    sudo chmod +x FL;
     sudo chmod +x awesome_display_layout.sh;
-    sudo chmod +x graal;
     sudo chmod +x lock.sh;
-    sudo chmod +x noisegate;
-    sudo chmod +x nrestore.sh;
-    sudo chmod +x pwrestart;
     sudo chmod +x screentearfix.sh;
     sudo chmod +x sleep.sh;
     sudo chmod +x webcam;
@@ -225,9 +220,6 @@ install_configs () {
 # Xscreensaver config
     mv xscreensaver ~/.xscreensaver
     
-# Noise gate config file for carla
-    mv audio.carxp ~/audio.carxp
-
 # Custom sudo lecture (requires the use of the sudo visudo command to add the lines "Defaults lecture=always" and "Defaults lecture_file=/home/user/lecture")
     mv lecture ~/lecture
 
@@ -312,6 +304,7 @@ done
 # Installs oh-my-bash, custom themes for bash shell.
 install_omb () {
      sudo pacman -S curl;
+     cp .bashrc .bashrc.omb_backup
      bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
      sudo echo "colorscript random">>.bashrc
      mv dotfiles/.oh-my-bash/custom/aliases/custom.aliases.sh ~/.oh-my-bash/custom/aliases/custom.aliases.sh
@@ -320,7 +313,7 @@ install_omb () {
 confirm_omb () {
     while true
         do
-        read -p "would you like to install oh-my-bash? (custom bash themes) [this will end kaarbs. you must re-run kaarbs after oh-my-bash is installed to continue.] [y/n]:" yn
+        read -p "would you like to install oh-my-bash? (custom bash themes) [this will end kaarbs. you must re-run kaarbs after oh-my-bash is installed to continue. it will also backup your current .bashrc] [y/n]:" yn
 
         case $yn in
         [yY] ) echo -e "${CYAN}installing oh my bash${NC}";
@@ -668,7 +661,7 @@ confirm_restart
 # Awesome window manager
 confirm_awesomewm
 
-# Simple desktop display manager + custom theme [yay]
+# Simple desktop display manager + custom theme
 confirm_sddm
 
 # Kojiros custom configs
