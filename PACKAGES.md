@@ -1,6 +1,10 @@
 # What does kaarbs-openrc install?
 For those of you wondering what the script gives you the choice of installing, here is a complete list:
 ## Dependencies:
+- git
+- make
+- gcc
+- pkgconf
 - rsync
 - wget
 - noto-fonts, noto-fonts-cjk, noto-fonts-emoji
