@@ -38,8 +38,7 @@ For those of you wondering what the script gives you the choice of installing, h
 - sxiv
 - imagemagick
 - conky
-- sddm, sddm-openrc
-- sddm-lain-wired-theme [yay]
+- sddm, sddm-openrc, sddm-lain-wired-theme, gst-plugins-good
 - network-manager-applet [yay]
 
 ## My custom configs/theme:
