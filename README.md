@@ -4,6 +4,7 @@ kojiros automated artix ricing bash script
 This script is a systemd-free fork of [kaarbs](https://github.com/basedghost/kaarbs) that was written for Artix Linux and the OpenRC init system.
 
 # Instructions:
+First, make sure you have `git` installed, then:
 1. Clone the repo + move the script to your home folder:
 ```
 git clone https://github.com/basedghost/kaarbs-openrc/ && mv kaarbs/kaarbs-*.sh kaarbs-openrc.sh
