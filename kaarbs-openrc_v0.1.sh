@@ -23,7 +23,7 @@ YELLOW='\033[0;33m'
 # Installs dependencies.
 install_dep () {
 	echo -e "${CYAN}proceeding to install necessary dependencies...${NC}" && sleep 2; 
-	sudo pacman -S git make gcc pkgconf rsync wget noto-fonts noto-fonts-cjk noto-fonts-emoji terminus-font pacman-contrib arandr ufw ufw-openrc qt5-base qt5-svg qt5-quickcontrols qt5-quickcontrols2 qt5-graphicaleffects qt5-multimedia zip unzip unrar p7zip logrotate;
+	sudo pacman -S make gcc pkgconf rsync wget noto-fonts noto-fonts-cjk noto-fonts-emoji terminus-font pacman-contrib arandr ufw ufw-openrc qt5-base qt5-svg qt5-quickcontrols qt5-quickcontrols2 qt5-graphicaleffects qt5-multimedia zip unzip unrar p7zip logrotate;
 	sudo rc-update add ufw boot;
 	sudo ufw enable
 }
@@ -39,7 +39,7 @@ script_init () {
 	[pP] ) echo -e "${CYAN}installing dependencies${NC}";
                   install_dep && break;;
            [eE] ) echo -e "${RED}exiting KAARBS"; exit;;
-           [lL] ) clear; echo -e "git"$'\n'"make"$'\n'"gcc"$'\n'"pkgconf"$'\n'"rsync"$'\n'"noto-fonts"$'\n'"noto-fonts-cjk"$'\n'"noto-fonts-emoji"$'\n'"terminus-font"$'\n'"pacman-contrib"$'\n'"arandr"$'\n'"ufw, ufw-openrc"$'\n'"qt5-base"$'\n'"qt5-svg"$'\n'"qt5-quickcontrols"$'\n'"qt5-quickcontrols2"$'\n'"qt5-graphicaleffects"$'\n'"qt5-multimedia${NC}"; script_init;;
+           [lL] ) clear; echo -e "make"$'\n'"gcc"$'\n'"pkgconf"$'\n'"rsync"$'\n'"noto-fonts"$'\n'"noto-fonts-cjk"$'\n'"noto-fonts-emoji"$'\n'"terminus-font"$'\n'"pacman-contrib"$'\n'"arandr"$'\n'"ufw, ufw-openrc"$'\n'"qt5-base"$'\n'"qt5-svg"$'\n'"qt5-quickcontrols"$'\n'"qt5-quickcontrols2"$'\n'"qt5-graphicaleffects"$'\n'"qt5-multimedia${NC}"; script_init;;
 	   [sS] ) echo -e "${YELLOW}skipping dependencies...${NC}"; break;;
               * ) echo -e "${RED}invalid response${NC}";;
         esac
